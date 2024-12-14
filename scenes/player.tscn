@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://er7jipm67eog"]
+
+[ext_resource type="Texture2D" uid="uid://cueyg37nyx5f1" path="res://assets/kenney_pixel-line-platformer/Tilemap/tilemap.png" id="1_0qh32"]
+[ext_resource type="Script" path="res://scenes/animated_sprite_2d.gd" id="2_d3y7d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs4t6"]
+atlas = ExtResource("1_0qh32")
+region = Rect2(0, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvohx"]
+atlas = ExtResource("1_0qh32")
+region = Rect2(102, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs0t5"]
+atlas = ExtResource("1_0qh32")
+region = Rect2(85, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dxcb"]
+atlas = ExtResource("1_0qh32")
+region = Rect2(102, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6sie"]
+atlas = ExtResource("1_0qh32")
+region = Rect2(0, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnm4t"]
+atlas = ExtResource("1_0qh32")
+region = Rect2(17, 68, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2frl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs4t6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvohx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs0t5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dxcb")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6sie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnm4t")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qevxc"]
+radius = 5.38516
+
+[node name="Player" type="CharacterBody2D"]
+floor_max_angle = 1.0472
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f2frl")
+animation = &"jumping"
+frame_progress = 0.075856
+script = ExtResource("2_d3y7d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_qevxc")
