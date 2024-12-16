@@ -289,7 +289,7 @@ floor_max_angle = 1.0472
 position = Vector2(0, -12.75)
 scale = Vector2(0.207031, 0.199219)
 sprite_frames = SubResource("SpriteFrames_f2frl")
-animation = &"idle"
+animation = &"run"
 script = SubResource("GDScript_oe2k0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

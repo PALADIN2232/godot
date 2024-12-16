@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.flip_h = direction < 0
 		animated_sprite.play("jumping")	
 		if Input.is_action_pressed("run"):
-				velocity.x *= RUN_MULTIPLIER
+			velocity.x *= RUN_MULTIPLIER
 	
 	
 
