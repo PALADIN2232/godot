@@ -1,17 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://dku42haoogqas"]
+[gd_scene load_steps=12 format=3 uid="uid://dku42haoogqas"]
 
 [ext_resource type="PackedScene" uid="uid://er7jipm67eog" path="res://scenes/player.tscn" id="1_5h52g"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="2_0lfk1"]
 [ext_resource type="Texture2D" uid="uid://cgmkdbckdu5qh" path="res://assets/kenney_pico-8-platformer/Transparent/Tilemap/tilemap_packed.png" id="2_toykw"]
 [ext_resource type="Texture2D" uid="uid://ch15fttcsfxdo" path="res://assets/cavesofgallet_tiles.png" id="3_ide83"]
+[ext_resource type="Texture2D" uid="uid://sdskcyw457fl" path="res://assets/Parallax_Backgrounds_Cave/0.png" id="5_hdu4k"]
+[ext_resource type="PackedScene" uid="uid://dipw4kevbot4i" path="res://scenes/enemy_easy.tscn" id="5_utd1s"]
 
 [sub_resource type="GDScript" id="GDScript_w2ydv"]
 script/source = "extends Node2D
 
-@onready var timer = $Timer
+@onready var timer = $Area2D/CollisionShape2D/Timer
 
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	if body.name == \"Player\":
+		Engine.time_scale = 0.5
+		timer.start()
+	
+func _on_timer_timeout():
+	Engine.time_scale = 1
 	get_tree().reload_current_scene()
 	
 "
@@ -304,22 +311,40 @@ sources/0 = SubResource("TileSetAtlasSource_x7fpo")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t1gm6"]
 
+[sub_resource type="GDScript" id="GDScript_exjnu"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"HP: \" + str($\"../../Player\".health)
+"
+
 [node name="Game" type="Node2D"]
+scale = Vector2(1.01154, 1)
 script = SubResource("GDScript_w2ydv")
 
 [node name="Player" parent="." instance=ExtResource("1_5h52g")]
-position = Vector2(-2, 0)
-script = ExtResource("2_0lfk1")
+position = Vector2(39.5436, -25)
+collision_mask = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, 2)
-zoom = Vector2(4, 4)
+position = Vector2(13.8403, -31)
+scale = Vector2(0.226717, 0.694651)
+zoom = Vector2(8, 8)
+position_smoothing_speed = 3.0
 
 [node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_5d3hx")
 rendering_quadrant_size = 24
 format = 2
-layer_0/tile_data = PackedInt32Array(65531, 65536, 4, 65532, 65536, 4, 65533, 65536, 4, 65534, 65536, 4, 65535, 65536, 4, 0, 65536, 4, 1, 65536, 4, 2, 65536, 4, 3, 65536, 4, 4, 65536, 4, 5, 262145, 2, -65530, 393217, 0, -131065, 393217, 0, -196600, 393217, 0, -196599, 262145, 2, -196598, 262145, 2, -196597, 262145, 2, 6, 327681, 2, -65529, 327681, 2, -131064, 327681, 2, -196594, 262145, 2, -196593, 262145, 2, -196588, 262145, 2, -196589, 262145, 2, -262123, 393217, 0, -327658, 393217, 0, -393193, 393217, 0, -393192, 262145, 2, -393191, 262145, 2, -393190, 262145, 2, -393189, 262145, 2, 31, 262145, 2, 32, 262145, 2, 33, 262145, 2, -196587, 393217, 1, -262122, 393217, 1, -327657, 393217, 1, -458739, 851969, 0)
+layer_0/tile_data = PackedInt32Array(-196600, 262144, 1, -196599, 262144, 1, -196598, 262144, 1, -196597, 262144, 1, -196594, 262144, 1, -196593, 262144, 1, -196588, 262144, 1, -196589, 262144, 1, -196587, 262144, 1, -196596, 262144, 1, -196595, 65536, 4, -196592, 262144, 1, -196591, 262144, 1, -196590, 65536, 4, -196586, 65536, 4, -196585, 262144, 1, -196584, 262144, 1, -196583, 262144, 1, -196582, 131072, 4, -196580, 262144, 1, -196579, 262144, 1, -196578, 262144, 1, -196581, 262144, 1, -196577, 262144, 1, -196576, 65536, 4, -196575, 262144, 1, -196574, 262144, 1, -196573, 262144, 1, -196572, 262144, 1, -196571, 131072, 4, -196570, 262144, 1, -196569, 262144, 1, -196568, 262144, 1, -196567, 131072, 4, -196566, 262144, 1, -196565, 262144, 1, -196564, 131072, 4, -196563, 262144, 1, -196562, 262144, 1, -196561, 131072, 4, -196560, 262144, 1, -196559, 262144, 1, -196558, 262144, 1, -196557, 131072, 4, -196556, 262144, 1, -196555, 262144, 1, -196554, 65536, 4, -196553, 262144, 1, -196552, 262144, 1, -196551, 131072, 4, -196550, 262144, 1, -196547, 262144, 1, -196549, 262144, 1, -196548, 65536, 4, -196546, 131072, 4, -196545, 262144, 1, -196544, 131072, 4, -196543, 262144, 1, -196542, 65536, 4, -196541, 131072, 4, -196540, 262144, 1, -196539, 262144, 1, -196538, 262144, 1, -196537, 262144, 1, -196536, 262144, 1, -196535, 65536, 4, -196534, 262144, 1, -196533, 262144, 1, -196532, 262144, 1, -196531, 262144, 1, -196530, 65536, 4, -196529, 262144, 1, -196528, 262144, 1, -196527, 262144, 1, -196526, 262144, 1, -196525, 262144, 1, -196601, 262144, 1, -196602, 262144, 1, -196603, 262144, 1, -196604, 65536, 4, -196605, 262144, 1, -196606, 262144, 1, -196607, 262144, 1, -196608, 262144, 1, -131073, 262144, 1, -131074, 262144, 1, -131075, 262144, 1, -131076, 262144, 1, -65540, 196608, 0, -196524, 262144, 1, -196523, 262144, 1, -196522, 262144, 1, -196521, 262144, 1, -196520, 262144, 1, -196519, 262144, 1, -196518, 262144, 1, -196517, 262144, 1, -196516, 262144, 1, -196515, 262144, 1, -196514, 262144, 1, -196513, 262144, 1, -196512, 262144, 1, -196511, 262144, 1, -196510, 262144, 1, -196509, 262144, 1, -196508, 262144, 1, -196507, 262144, 1, -196506, 262144, 1, -196505, 262144, 1, -196504, 262144, 1, -196503, 262144, 1, -196502, 262144, 1, -196501, 262144, 1, -196500, 262144, 1, -196499, 262144, 1, -196498, 262144, 1, -196497, 262144, 1, -196496, 262144, 1, -196495, 262144, 1, -196494, 262144, 1, -196493, 262144, 1, -196492, 262144, 1, -196491, 262144, 1, -196490, 262144, 1, -196489, 262144, 1, -196488, 262144, 1, -196487, 262144, 1, -196486, 262144, 1, -196485, 262144, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-4, 28)
@@ -329,6 +354,38 @@ position = Vector2(1, 34)
 shape = SubResource("WorldBoundaryShape2D_t1gm6")
 
 [node name="Timer" type="Timer" parent="Area2D/CollisionShape2D"]
+wait_time = 0.1
+
+[node name="Mobs" type="Node2D" parent="."]
+position = Vector2(18, 35)
+
+[node name="EnemyEasy" parent="Mobs" instance=ExtResource("5_utd1s")]
+position = Vector2(109.528, -55)
+collision_mask = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 140.0
+offset_bottom = 140.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 100
+text = "HP"
+script = SubResource("GDScript_exjnu")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(384, 0)
+
+[node name="0" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(191.25, -16.25)
+texture = ExtResource("5_hdu4k")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
