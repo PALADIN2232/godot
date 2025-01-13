@@ -4,7 +4,11 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ovyhg"]
+<<<<<<< HEAD
 radius = 7.0
+=======
+radius = 10.198
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 
 [node name="DamageBox" type="Node2D"]
 

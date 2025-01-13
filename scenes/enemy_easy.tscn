@@ -161,7 +161,11 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byoci")
 }],
+<<<<<<< HEAD
 "loop": false,
+=======
+"loop": true,
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 "name": &"attack1",
 "speed": 8.0
 }, {
@@ -274,6 +278,7 @@ height = 16.0
 height = 208.0
 
 [node name="EnemyEasy" type="CharacterBody2D"]
+<<<<<<< HEAD
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_aahmc")
@@ -287,6 +292,21 @@ autoplay = "idle"
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(-17, 0)
+=======
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_aahmc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(0.303333, 0.3)
+sprite_frames = SubResource("SpriteFrames_uiha0")
+animation = &"attack1"
+autoplay = "idle"
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 shape = SubResource("CapsuleShape2D_b18vq")
 
 [node name="Detector" type="Area2D" parent="."]
@@ -305,6 +325,7 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
+<<<<<<< HEAD
 position = Vector2(-17, 0)
 
 [node name="HitBox" parent="DamageBox" index="1"]
@@ -314,6 +335,17 @@ collision_mask = 36
 
 [node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
 position = Vector2(9, 0)
+=======
+position = Vector2(2, 0)
+
+[node name="HitBox" parent="DamageBox" index="1"]
+position = Vector2(2, 0)
+collision_layer = 0
+collision_mask = 34
+
+[node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
+position = Vector2(12, -7)
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 
 [connection signal="sprite_frames_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_sprite_frames_changed"]
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

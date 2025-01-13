@@ -18,10 +18,13 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 Signals="*res://signals.gd"
 
+<<<<<<< HEAD
 [display]
 
 window/snap/snap_2d_transforms_to_pixel=true
 
+=======
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 [input]
 
 jump={
@@ -55,8 +58,13 @@ attack={
 [layer_names]
 
 2d_physics/layer_1="world"
+<<<<<<< HEAD
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="player"
+=======
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemies"
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 2d_physics/layer_6="playerHurtBox"
 2d_physics/layer_7="enemyHurtBoz"
 

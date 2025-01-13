@@ -427,27 +427,43 @@ radius = 3.0
 height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dynen"]
+<<<<<<< HEAD
 radius = 9.05539
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 4
+=======
+radius = 15.0333
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 collision_mask = 5
 script = ExtResource("1_u2mxy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+<<<<<<< HEAD
+=======
+position = Vector2(13, -3)
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 scale = Vector2(0.207031, 0.199219)
 sprite_frames = SubResource("SpriteFrames_f2frl")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+<<<<<<< HEAD
 position = Vector2(0, 4)
+=======
+position = Vector2(14, 1)
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 shape = SubResource("CapsuleShape2D_qik5l")
 
 [node name="DamageBox" parent="." instance=ExtResource("9_hwfug")]
 position = Vector2(113.129, -39.2738)
 
 [node name="HurtBox" parent="DamageBox" index="0"]
+<<<<<<< HEAD
 position = Vector2(-113.129, 43.2738)
 collision_layer = 4
 collision_mask = 0
@@ -457,11 +473,24 @@ position = Vector2(0, 0)
 
 [node name="HitBox" parent="DamageBox" index="1"]
 position = Vector2(-113.129, 43.2738)
+=======
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
+position = Vector2(-100.129, 40.2738)
+
+[node name="HitBox" parent="DamageBox" index="1"]
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
+<<<<<<< HEAD
 position = Vector2(9, 0)
+=======
+position = Vector2(-99.129, 41.2738)
+>>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
 shape = SubResource("CircleShape2D_dynen")
 
 [editable path="DamageBox"]
