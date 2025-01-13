@@ -1,16 +1,12 @@
-[gd_scene load_steps=66 format=3 uid="uid://er7jipm67eog"]
+[gd_scene load_steps=57 format=3 uid="uid://er7jipm67eog"]
 
 [ext_resource type="Texture2D" uid="uid://ck5t1cnryoyex" path="res://assets/Samurai/Idle.png" id="1_bcu6g"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_u2mxy"]
 [ext_resource type="Texture2D" uid="uid://h8hnrpfpck6f" path="res://assets/Samurai/Attack_1.png" id="1_v3134"]
 [ext_resource type="Texture2D" uid="uid://iclqrnngshmv" path="res://assets/Samurai/Attack_2.png" id="2_1bune"]
 [ext_resource type="Texture2D" uid="uid://dxqnkvlx3keso" path="res://assets/Samurai/Jump.png" id="2_3nrqo"]
 [ext_resource type="Texture2D" uid="uid://c1kjarvddqixx" path="res://assets/Samurai/Run.png" id="3_6osvx"]
 [ext_resource type="Texture2D" uid="uid://ba0umygn5ov7y" path="res://assets/Samurai/Attack_3.png" id="3_wfwek"]
 [ext_resource type="Texture2D" uid="uid://cjjjn3rqtsqwy" path="res://assets/Samurai/Walk.png" id="4_hv473"]
-[ext_resource type="Texture2D" uid="uid://pel4udd6ekqo" path="res://assets/Samurai/Hurt.png" id="5_ony00"]
-[ext_resource type="Texture2D" uid="uid://cuywhyfvyi8nc" path="res://assets/Samurai/Dead.png" id="6_8nx6a"]
-[ext_resource type="PackedScene" uid="uid://cyb4q306lkljv" path="res://scenes/damage_box.tscn" id="9_hwfug"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1dlmv"]
 atlas = ExtResource("1_v3134")
@@ -62,26 +58,6 @@ region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4f13"]
 atlas = ExtResource("3_wfwek")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13m18"]
-atlas = ExtResource("5_ony00")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6m1w4"]
-atlas = ExtResource("5_ony00")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s25cr"]
-atlas = ExtResource("6_8nx6a")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ixqod"]
-atlas = ExtResource("6_8nx6a")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_61qw6"]
-atlas = ExtResource("6_8nx6a")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udm20"]
@@ -152,35 +128,35 @@ region = Rect2(1280, 0, 128, 128)
 atlas = ExtResource("2_3nrqo")
 region = Rect2(1408, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mah01"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5spx"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jo4hx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf5bw"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g5oax"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6dfl"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_68t5r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1xjc"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u62hg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uiul"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(512, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y7why"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1b8r"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(640, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_75rff"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqf0x"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(768, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mwhe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcdc8"]
 atlas = ExtResource("3_6osvx")
 region = Rect2(896, 0, 128, 128)
 
@@ -274,31 +250,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_13m18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6m1w4")
-}],
-"loop": true,
-"name": &"damaged",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s25cr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ixqod")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_61qw6")
-}],
-"loop": true,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_udm20")
 }, {
 "duration": 1.0,
@@ -310,9 +261,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_drkc4")
 }],
-"loop": false,
+"loop": true,
 "name": &"fall",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -335,7 +286,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -365,28 +316,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mah01")
+"texture": SubResource("AtlasTexture_c5spx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jo4hx")
+"texture": SubResource("AtlasTexture_pf5bw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g5oax")
+"texture": SubResource("AtlasTexture_i6dfl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_68t5r")
+"texture": SubResource("AtlasTexture_x1xjc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u62hg")
+"texture": SubResource("AtlasTexture_7uiul")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y7why")
+"texture": SubResource("AtlasTexture_p1b8r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_75rff")
+"texture": SubResource("AtlasTexture_bqf0x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7mwhe")
+"texture": SubResource("AtlasTexture_gcdc8")
 }],
 "loop": true,
 "name": &"run",
@@ -422,75 +373,34 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_oe2k0"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qik5l"]
 radius = 3.0
-height = 18.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dynen"]
-<<<<<<< HEAD
-radius = 9.05539
+height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
-collision_layer = 4
-=======
-radius = 15.0333
-
-[node name="Player" type="CharacterBody2D"]
-collision_layer = 2
->>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
-collision_mask = 5
-script = ExtResource("1_u2mxy")
+floor_max_angle = 1.0472
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-<<<<<<< HEAD
-=======
-position = Vector2(13, -3)
->>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
+position = Vector2(0, -12.75)
 scale = Vector2(0.207031, 0.199219)
 sprite_frames = SubResource("SpriteFrames_f2frl")
-animation = &"idle"
+animation = &"attack3"
+script = SubResource("GDScript_oe2k0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-<<<<<<< HEAD
-position = Vector2(0, 4)
-=======
-position = Vector2(14, 1)
->>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_qik5l")
-
-[node name="DamageBox" parent="." instance=ExtResource("9_hwfug")]
-position = Vector2(113.129, -39.2738)
-
-[node name="HurtBox" parent="DamageBox" index="0"]
-<<<<<<< HEAD
-position = Vector2(-113.129, 43.2738)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
-position = Vector2(0, 0)
-
-[node name="HitBox" parent="DamageBox" index="1"]
-position = Vector2(-113.129, 43.2738)
-=======
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
-position = Vector2(-100.129, 40.2738)
-
-[node name="HitBox" parent="DamageBox" index="1"]
->>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
-collision_layer = 0
-collision_mask = 64
-
-[node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
-<<<<<<< HEAD
-position = Vector2(9, 0)
-=======
-position = Vector2(-99.129, 41.2738)
->>>>>>> 8d674cae0dad2a3d9df5b801d6755c34bdb96e05
-shape = SubResource("CircleShape2D_dynen")
-
-[editable path="DamageBox"]
