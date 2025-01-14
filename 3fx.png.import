@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://detrnu4bx8qtk"
-path="res://.godot/imported/3fx.png-415b5f718fec7cdcea6c97146556c731.ctex"
+path="res://.godot/imported/3fx.png-0514653f77a60b3a2005e7aa4ee54325.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Parallax Cave/3fx.png"
-dest_files=["res://.godot/imported/3fx.png-415b5f718fec7cdcea6c97146556c731.ctex"]
+source_file="res://3fx.png"
+dest_files=["res://.godot/imported/3fx.png-0514653f77a60b3a2005e7aa4ee54325.ctex"]
 
 [params]
 

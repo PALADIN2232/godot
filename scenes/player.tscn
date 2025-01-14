@@ -918,7 +918,8 @@ script = ExtResource("1_u2mxy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.207031, 0.199219)
 sprite_frames = SubResource("SpriteFrames_f2frl")
-animation = &"run"
+animation = &"idle"
+frame_progress = 0.0904313
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false

@@ -1,15 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dku42haoogqas"]
+[gd_scene load_steps=15 format=3 uid="uid://dku42haoogqas"]
 
 [ext_resource type="PackedScene" uid="uid://er7jipm67eog" path="res://scenes/player.tscn" id="1_5h52g"]
-[ext_resource type="PackedScene" path="res://scenes/enemy_easy5.tscn" id="3_hwkm7"]
 [ext_resource type="Texture2D" uid="uid://ch15fttcsfxdo" path="res://assets/cavesofgallet_tiles.png" id="3_ide83"]
-[ext_resource type="PackedScene" path="res://scenes/enemy_easy4.tscn" id="4_xkyd7"]
 [ext_resource type="Texture2D" uid="uid://sdskcyw457fl" path="res://assets/Parallax_Backgrounds_Cave/0.png" id="5_hdu4k"]
 [ext_resource type="Texture2D" uid="uid://bxn8ig4fmynkq" path="res://assets/healthbar/Sprite-0003 (1).png" id="5_pf5vq"]
 [ext_resource type="PackedScene" uid="uid://dipw4kevbot4i" path="res://scenes/enemy_easy.tscn" id="5_utd1s"]
-[ext_resource type="PackedScene" path="res://scenes/enemy_easy3.tscn" id="5_vlpvt"]
 [ext_resource type="Texture2D" uid="uid://csdpb63h63hoe" path="res://assets/healthbar/Sprite-0001.png" id="6_3m1gx"]
-[ext_resource type="PackedScene" path="res://scenes/enemy_easy2.tscn" id="6_ay3yc"]
 [ext_resource type="Texture2D" uid="uid://cr6vclx4qkj0g" path="res://assets/healthbar/Sprite-0002 (1).png" id="7_3vrv0"]
 [ext_resource type="PackedScene" uid="uid://8uek670koi3n" path="res://scenes/enemy_easy1.tscn" id="7_xnmou"]
 [ext_resource type="AudioStream" uid="uid://fbhx8qos8grp" path="res://assets/SFX-20250114T093509Z-001/5. Underground.mp3" id="13_otolv"]
@@ -192,12 +188,12 @@ scale = Vector2(1.01154, 1)
 script = SubResource("GDScript_w2ydv")
 
 [node name="Player" parent="." instance=ExtResource("1_5h52g")]
-position = Vector2(39.5436, -25)
+position = Vector2(39.5437, -21)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(13.8403, -31)
+position = Vector2(0.988657, -21.84)
 scale = Vector2(0.226717, 0.694651)
-zoom = Vector2(10, 10)
+zoom = Vector2(8, 8)
 position_smoothing_speed = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -216,17 +212,57 @@ position = Vector2(18, 35)
 [node name="EnemyEasy" parent="Mobs" instance=ExtResource("5_utd1s")]
 position = Vector2(169.832, -51)
 
-[node name="Enemy" parent="Mobs" instance=ExtResource("3_hwkm7")]
+[node name="Enemy" parent="Mobs"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(224.205, -170)
+script = null
 
-[node name="Enemy2" parent="Mobs" instance=ExtResource("4_xkyd7")]
+[node name="Enemy2" parent="Mobs"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(142.152, -194)
+script = null
 
-[node name="Enemy3" parent="Mobs" instance=ExtResource("5_vlpvt")]
+[node name="Enemy3" parent="Mobs"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(320.098, -300)
+script = null
 
-[node name="Enemy4" parent="Mobs" instance=ExtResource("6_ay3yc")]
+[node name="Enemy4" parent="Mobs"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(357.665, -297)
+script = null
 
 [node name="Enemy5" parent="Mobs" instance=ExtResource("7_xnmou")]
 position = Vector2(391.277, -298)
