@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dipw4kevbot4i"]
+[gd_scene load_steps=60 format=3 uid="uid://dipw4kevbot4i"]
 
 [ext_resource type="Texture2D" uid="uid://dc0pnbgfy23xw" path="res://assets/SpecterSkeleton/Attack1.png" id="1_0i44m"]
 [ext_resource type="Script" path="res://scenes/enemy_easy.gd" id="1_aahmc"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://6cryb3hwdjl5" path="res://assets/SpecterSkeleton/Death.png" id="3_cjjlx"]
 [ext_resource type="Texture2D" uid="uid://bupyiaxykgr8p" path="res://assets/SpecterSkeleton/Idle.png" id="4_1seth"]
 [ext_resource type="Texture2D" uid="uid://dqwwm13d4np2m" path="res://assets/SpecterSkeleton/Walk.png" id="5_j2y8i"]
+[ext_resource type="AudioStream" uid="uid://dxddy5uvb164c" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_hurt_0.wav" id="7_el3gq"]
+[ext_resource type="AudioStream" uid="uid://bah3akgrjfbyg" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_hurt_1.wav" id="8_relwm"]
+[ext_resource type="AudioStream" uid="uid://bmj4co3e6c5pm" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_hurt_2.wav" id="9_2et7r"]
+[ext_resource type="AudioStream" uid="uid://crud47wc0mfpv" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_death_0.wav" id="10_2bqv4"]
+[ext_resource type="AudioStream" uid="uid://cmph5itgsm2yl" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_death_1.wav" id="11_o2b6e"]
+[ext_resource type="AudioStream" uid="uid://lh52m0golt1j" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_death_2.wav" id="12_0em3h"]
+[ext_resource type="AudioStream" uid="uid://b81hsinvfkc58" path="res://assets/SFX-20250114T093509Z-001/dd2_skeleton_summoned.wav" id="13_rubby"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7axja"]
 atlas = ExtResource("1_0i44m")
@@ -38,10 +45,6 @@ region = Rect2(900, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd0ql"]
 atlas = ExtResource("1_0i44m")
 region = Rect2(1050, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_igy5s"]
-atlas = ExtResource("2_guf1p")
-region = Rect2(0, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5h5s"]
 atlas = ExtResource("2_guf1p")
@@ -111,6 +114,22 @@ region = Rect2(300, 0, 150, 150)
 atlas = ExtResource("5_j2y8i")
 region = Rect2(450, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfuyt"]
+atlas = ExtResource("3_cjjlx")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xks4v"]
+atlas = ExtResource("3_cjjlx")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8u6w"]
+atlas = ExtResource("3_cjjlx")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08obs"]
+atlas = ExtResource("3_cjjlx")
+region = Rect2(0, 0, 150, 150)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxpdw"]
 animations = [{
 "frames": [{
@@ -143,9 +162,6 @@ animations = [{
 "speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igy5s")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s5h5s")
 }, {
@@ -215,6 +231,23 @@ animations = [{
 "loop": true,
 "name": &"move",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfuyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xks4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8u6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08obs")
+}],
+"loop": false,
+"name": &"summoned",
+"speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcpwb"]
@@ -234,6 +267,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/AudioStreamPlayer2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/AudioStreamPlayer3:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vcihw"]
@@ -276,7 +345,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_5bduc"]
-length = 1.5
+length = 1.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -284,10 +353,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3, 4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -300,6 +369,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["death"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/AudioStreamPlayer2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jk4vo"]
@@ -327,6 +408,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["hit"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_dadid"]
@@ -385,6 +478,44 @@ tracks/1/keys = {
 "values": ["move"]
 }
 
+[sub_resource type="Animation" id="Animation_h4s2u"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["summoned"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/AudioStreamPlayer3:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02t1g"]
 _data = {
 "RESET": SubResource("Animation_ugngd"),
@@ -392,11 +523,26 @@ _data = {
 "death": SubResource("Animation_5bduc"),
 "hit": SubResource("Animation_jk4vo"),
 "idle": SubResource("Animation_dadid"),
-"move": SubResource("Animation_xn8rt")
+"move": SubResource("Animation_xn8rt"),
+"summoned": SubResource("Animation_h4s2u")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq3xe"]
 size = Vector2(31.5, 20)
+
+[sub_resource type="GDScript" id="GDScript_vi3y8"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$Hitbox/CollisionShape2D.disabled = true
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xu8kv"]
 radius = 14.1421
@@ -408,6 +554,18 @@ radius = 16.6667
 radius = 26.6667
 height = 366.667
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_usy1t"]
+streams_count = 3
+stream_0/stream = ExtResource("7_el3gq")
+stream_1/stream = ExtResource("8_relwm")
+stream_2/stream = ExtResource("9_2et7r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vaewv"]
+streams_count = 3
+stream_0/stream = ExtResource("10_2bqv4")
+stream_1/stream = ExtResource("11_o2b6e")
+stream_2/stream = ExtResource("12_0em3h")
+
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.3, 0.3)
 collision_layer = 2
@@ -416,7 +574,7 @@ script = ExtResource("1_aahmc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-60, -3.33333)
 sprite_frames = SubResource("SpriteFrames_qxpdw")
-animation = &"attack"
+animation = &"summoned"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-56.6667, -3.33333)
@@ -440,6 +598,7 @@ position = Vector2(23.3333, 7.94729e-07)
 shape = SubResource("RectangleShape2D_cq3xe")
 
 [node name="CombatBox" type="Node2D" parent="AttackDirection/AttackRange"]
+script = SubResource("GDScript_vi3y8")
 
 [node name="Hurtbox" type="Area2D" parent="AttackDirection/AttackRange/CombatBox"]
 collision_layer = 64
@@ -465,6 +624,17 @@ collision_mask = 4
 position = Vector2(-9.53674e-07, -9.53674e-07)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3wl37")
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
+stream = SubResource("AudioStreamRandomizer_usy1t")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Sound"]
+stream = SubResource("AudioStreamRandomizer_vaewv")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("13_rubby")
 
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="area_entered" from="AttackDirection/AttackRange/CombatBox/Hitbox" to="." method="_on_hitbox_area_entered"]

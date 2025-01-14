@@ -5,12 +5,16 @@ enum {
 	ATTACK,
 	CHASE,
 	DAMAGED,
-	DEATH
+	DEATH,
+	SUMMONED
 }
 
 
 var state: int = IDLE:
 	set(value):
+		if state == DEATH:
+			# Do not change state if already in DEATH
+			return
 		state = value	
 		match state:
 			CHASE: chase_state()
@@ -18,15 +22,17 @@ var state: int = IDLE:
 			ATTACK: attack_state()
 			DAMAGED: damage_state()
 			DEATH: death_state()
+			SUMMONED: summoned_state()
 
 # Переменные
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_position  # Изменено на Vector2
 var direction
 var health = 100
-var damage = 10
+var damage = 100
 var speed = 60
 var chase = false
+var first_enter = true
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animated_player = $AnimationPlayer
@@ -105,9 +111,22 @@ func death_state():
 
 func _on_detector_body_entered(body: Node2D) -> void:
 	if chase == false:
-		state = CHASE
+		if first_enter == true:
+			state = SUMMONED
+			first_enter = false
+		else:
+			state = CHASE
 	chase = true
 
 
 func _on_detector_body_exited(body: Node2D) -> void:
 	chase = false
+	state = IDLE
+
+func summoned_state():
+	velocity.x = 0
+	animated_player.play("summoned")
+	await animated_player.animation_finished
+	state = CHASE
+	
+	

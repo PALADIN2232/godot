@@ -77,7 +77,7 @@ func move_state():
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		animated_player.play("fall")
+		animated_player.play("jumping")
 		
 func attack_state():
 	if is_on_floor():
