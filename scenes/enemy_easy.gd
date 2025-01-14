@@ -1,28 +1,39 @@
 extends CharacterBody2D
 
 enum {
- IDLE,
- ATTACK,
- CHASE
+	IDLE,
+	ATTACK,
+	CHASE,
+	DAMAGED,
+	DEATH
 }
+
 
 var state: int = IDLE:
 	set(value):
-		state = value
+		state = value	
 		match state:
+			CHASE: chase_state()
 			IDLE: idle_state()	
 			ATTACK: attack_state()
+			DAMAGED: damage_state()
+			DEATH: death_state()
 
 # Переменные
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var player_position: Vector2  # Изменено на Vector2
+var player_position  # Изменено на Vector2
 var direction
+var health = 100
+var damage = 10
+var speed = 60
+var chase = false
 
-@onready var attack_area = $DamageBox/HitBox/CollisionShape2D
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_player = $AnimationPlayer
 
 func _ready():
 	Signals.connect("player_position_update", Callable(self, "_on_player_position_update"))
+	Signals.connect("player_attack", Callable(self, "_on_damage_received"))
 
 func _physics_process(delta):
  # Применяем гравитацию, если персонаж не на полу
@@ -34,32 +45,69 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _on_player_position_update(player_pos : Vector2): #Принимаем Vector2
+func _on_player_position_update(player_pos): #Принимаем Vector2
 	player_position = player_pos
 
 func idle_state():
-	animated_sprite.play("idle")
+	velocity.x = 0
+	animated_player.play("idle")
 	await get_tree().create_timer(2).timeout
-	attack_area.disabled = false
-	state = CHASE
+	$AttackDirection/AttackRange/CollisionShape2D.disabled = false
+	if chase == true:
+		state = CHASE
  
 func attack_state():
-	animated_sprite.play("attack1")	
-	await animated_sprite.animation_finished
-	attack_area.disabled = true
+	velocity.x = 0
+	animated_player.play("attack")
+	await animated_player.animation_finished
+	$AttackDirection/AttackRange/CollisionShape2D.disabled = true
 	state = IDLE
 
 func chase_state():
+	animated_player.play("move")
 	direction = (player_position - self.position).normalized() # Используем player_position
-	if state != ATTACK:
-		if direction.x < 0:
-			animated_sprite.flip_h = true
-			$DamageBox/HitBox.rotation_degrees = 180
-		else:
-			animated_sprite.flip_h = false
-			$DamageBox/HitBox.rotation_degrees = 0
+	if direction.x < 0:
+		animated_sprite.flip_h = true
+		$AttackDirection.rotation_degrees = 180
+	else:
+		animated_sprite.flip_h = false
+		$AttackDirection.rotation_degrees = 0
+	velocity.x = direction.x * speed  # Extracting the x component
 
 
+func _on_hitbox_area_entered(area):
+	Signals.emit_signal("enemy_attack", damage)
 
-func _on_hit_box_body_entered(body):
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
 	state = ATTACK
+
+func _on_damage_received(player_damage):
+	health -= player_damage
+	if health <= 0:
+		state = DEATH
+	else:
+		state = DAMAGED
+	print(health)
+
+func damage_state():
+	velocity.x = 0
+	animated_player.play("hit")
+	await animated_player.animation_finished
+	state = IDLE
+	
+func death_state():
+	velocity.x = 0
+	animated_player.play("death")
+	await animated_player.animation_finished
+	queue_free()
+
+
+func _on_detector_body_entered(body: Node2D) -> void:
+	if chase == false:
+		state = CHASE
+	chase = true
+
+
+func _on_detector_body_exited(body: Node2D) -> void:
+	chase = false

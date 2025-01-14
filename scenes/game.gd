@@ -1,11 +1,12 @@
 extends Node2D
 
+@onready var health_bar = $CanvasLayer/HealthBar
+@onready var player = $Player
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	player.connect("health_changed", Callable(self, "_on_player_health_changed"))
+	health_bar.value = player.health
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_player_health_changed(new_health):
+	health_bar.value = new_health 
