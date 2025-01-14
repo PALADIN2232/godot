@@ -127,8 +127,9 @@ func death_state():
 	animated_player.play("death")
 	await animated_player.animation_finished
 	queue_free()
-	get_tree().reload_current_scene()
+	
 
 
 func _on_hitbox_area_entered(area):
 	Signals.emit_signal("player_attack", damage)
+	
