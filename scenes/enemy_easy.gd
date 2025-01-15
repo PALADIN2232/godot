@@ -28,11 +28,13 @@ var state: int = IDLE:
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_position  # Изменено на Vector2
 var direction
-var health = 100
-var damage = 100
+var health = 150
+var damage = 10
 var speed = 60
 var chase = false
 var first_enter = true
+var is_summoning = true
+var player_dmg
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animated_player = $AnimationPlayer
@@ -89,15 +91,17 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 	state = ATTACK
 
 func _on_damage_received(player_damage):
-	health -= player_damage
-	if health <= 0:
-		state = DEATH
-	else:
-		state = DAMAGED
-	print(health)
+	player_dmg = player_damage
 
 func damage_state():
+	$AttackDirection/AttackRange/CombatBox/Hitbox/CollisionShape2D.disabled = true
 	velocity.x = 0
+	direction = (player_position - self.position).normalized()
+	if is_summoning == true:
+		if direction.x < 0:
+			velocity.x = 7
+		elif direction.x > 0:
+			velocity.x = -7
 	animated_player.play("hit")
 	await animated_player.animation_finished
 	state = IDLE
@@ -130,3 +134,13 @@ func summoned_state():
 	state = CHASE
 	
 	
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	await get_tree().create_timer(0.001).timeout
+	health -= player_dmg
+	if health <= 0:
+		state = DEATH
+	else:
+		state = DAMAGED
+	print(health)

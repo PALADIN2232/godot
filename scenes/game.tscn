@@ -1,14 +1,27 @@
-[gd_scene load_steps=15 format=3 uid="uid://dku42haoogqas"]
+[gd_scene load_steps=28 format=3 uid="uid://dku42haoogqas"]
 
 [ext_resource type="PackedScene" uid="uid://er7jipm67eog" path="res://scenes/player.tscn" id="1_5h52g"]
+[ext_resource type="PackedScene" uid="uid://bsq2g7lorvlrq" path="res://scenes/boss.tscn" id="2_nk7rt"]
 [ext_resource type="Texture2D" uid="uid://ch15fttcsfxdo" path="res://assets/cavesofgallet_tiles.png" id="3_ide83"]
+[ext_resource type="PackedScene" uid="uid://bd2qfwm8dn8wv" path="res://scenes/enemy_easy2.tscn" id="4_qev63"]
 [ext_resource type="Texture2D" uid="uid://sdskcyw457fl" path="res://assets/Parallax_Backgrounds_Cave/0.png" id="5_hdu4k"]
 [ext_resource type="Texture2D" uid="uid://bxn8ig4fmynkq" path="res://assets/healthbar/Sprite-0003 (1).png" id="5_pf5vq"]
+[ext_resource type="PackedScene" uid="uid://dxqpqk1haxobl" path="res://scenes/enemy_easy3.tscn" id="5_psdtg"]
 [ext_resource type="PackedScene" uid="uid://dipw4kevbot4i" path="res://scenes/enemy_easy.tscn" id="5_utd1s"]
 [ext_resource type="Texture2D" uid="uid://csdpb63h63hoe" path="res://assets/healthbar/Sprite-0001.png" id="6_3m1gx"]
+[ext_resource type="PackedScene" uid="uid://dt16ao2yl22gf" path="res://scenes/enemy_easy4.tscn" id="6_r7k20"]
 [ext_resource type="Texture2D" uid="uid://cr6vclx4qkj0g" path="res://assets/healthbar/Sprite-0002 (1).png" id="7_3vrv0"]
-[ext_resource type="PackedScene" uid="uid://8uek670koi3n" path="res://scenes/enemy_easy1.tscn" id="7_xnmou"]
+[ext_resource type="PackedScene" uid="uid://j4w4ncc0hhlw" path="res://scenes/enemy_easy5.tscn" id="7_omjsu"]
+[ext_resource type="PackedScene" uid="uid://b5i5ghsmctobi" path="res://scenes/enemy_easy1.tscn" id="7_xnmou"]
+[ext_resource type="PackedScene" uid="uid://cqp6ihu21dh35" path="res://scenes/enemy_easy6.tscn" id="8_fpmgk"]
+[ext_resource type="PackedScene" uid="uid://cwiu2a7r5am3f" path="res://scenes/enemy_easy7.tscn" id="9_h20vf"]
+[ext_resource type="PackedScene" uid="uid://yrw7plsqa6j0" path="res://scenes/enemy_easy8.tscn" id="10_vnbgt"]
+[ext_resource type="PackedScene" uid="uid://c21psfpo7mhs0" path="res://scenes/enemy_easy9.tscn" id="11_rbelh"]
+[ext_resource type="PackedScene" uid="uid://bwagh734qq1l0" path="res://scenes/enemy_easy11.tscn" id="12_oekwd"]
 [ext_resource type="AudioStream" uid="uid://fbhx8qos8grp" path="res://assets/SFX-20250114T093509Z-001/5. Underground.mp3" id="13_otolv"]
+[ext_resource type="PackedScene" uid="uid://0oy0plgqb0in" path="res://scenes/enemy_easy12.tscn" id="13_qdosy"]
+[ext_resource type="PackedScene" uid="uid://ck30om64tjo6f" path="res://scenes/enemy_easy13.tscn" id="14_0huxo"]
+[ext_resource type="PackedScene" uid="uid://dkvbfwmt1mt5s" path="res://scenes/enemy_easy14.tscn" id="15_ph71r"]
 
 [sub_resource type="GDScript" id="GDScript_w2ydv"]
 script/source = "extends Node2D
@@ -187,12 +200,13 @@ scale = Vector2(1.01154, 1)
 script = SubResource("GDScript_w2ydv")
 
 [node name="Player" parent="." instance=ExtResource("1_5h52g")]
+z_index = 3
 position = Vector2(39.5437, -21)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0.988657, -21.84)
 scale = Vector2(0.226717, 0.694651)
-zoom = Vector2(8, 8)
+zoom = Vector2(7, 7)
 position_smoothing_speed = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -206,65 +220,57 @@ shape = SubResource("WorldBoundaryShape2D_t1gm6")
 wait_time = 0.1
 
 [node name="Mobs" type="Node2D" parent="."]
+z_index = 2
 position = Vector2(18, 35)
 
 [node name="EnemyEasy" parent="Mobs" instance=ExtResource("5_utd1s")]
 position = Vector2(169.832, -51)
 
-[node name="Enemy" parent="Mobs"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(224.205, -170)
-script = null
+[node name="Enemy" parent="Mobs" instance=ExtResource("7_xnmou")]
+position = Vector2(324.053, -51)
 
-[node name="Enemy2" parent="Mobs"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(142.152, -194)
-script = null
+[node name="Enemy2" parent="Mobs" instance=ExtResource("4_qev63")]
+position = Vector2(363.596, -51)
 
-[node name="Enemy3" parent="Mobs"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(320.098, -300)
-script = null
+[node name="Enemy3" parent="Mobs" instance=ExtResource("5_psdtg")]
+position = Vector2(436.752, -84)
 
-[node name="Enemy4" parent="Mobs"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(357.665, -297)
-script = null
+[node name="Enemy4" parent="Mobs" instance=ExtResource("6_r7k20")]
+position = Vector2(523.748, -116)
 
-[node name="Enemy5" parent="Mobs" instance=ExtResource("7_xnmou")]
-position = Vector2(391.277, -298)
+[node name="Enemy5" parent="Mobs" instance=ExtResource("7_omjsu")]
+position = Vector2(304.281, -172)
+
+[node name="Enemy6" parent="Mobs" instance=ExtResource("8_fpmgk")]
+position = Vector2(241.011, -172)
+
+[node name="Enemy7" parent="Mobs" instance=ExtResource("9_h20vf")]
+position = Vector2(204.433, -172)
+
+[node name="Enemy8" parent="Mobs" instance=ExtResource("10_vnbgt")]
+position = Vector2(145.118, -196)
+
+[node name="Enemy9" parent="Mobs" instance=ExtResource("11_rbelh")]
+position = Vector2(27.4752, -252)
+
+[node name="Enemy10" parent="Mobs" instance=ExtResource("12_oekwd")]
+position = Vector2(219.262, -298)
+
+[node name="Enemy11" parent="Mobs" instance=ExtResource("12_oekwd")]
+position = Vector2(330.973, -299)
+
+[node name="Enemy12" parent="Mobs" instance=ExtResource("13_qdosy")]
+position = Vector2(358.653, -299)
+
+[node name="Enemy13" parent="Mobs" instance=ExtResource("14_0huxo")]
+position = Vector2(390.288, -299)
+
+[node name="Enemy14" parent="Mobs" instance=ExtResource("15_ph71r")]
+position = Vector2(410.06, -299)
+
+[node name="Boss" parent="Mobs" instance=ExtResource("2_nk7rt")]
+position = Vector2(125.346, -69)
+scale = Vector2(1, 0.96)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -309,3 +315,4 @@ autoplay = true
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Area2D/CollisionShape2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="tree_exited" from="Mobs/Boss" to="." method="_on_boss_tree_exited"]

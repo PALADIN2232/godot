@@ -104,6 +104,7 @@ func attack_state():
 	state = MOVE
 	
 func damage_state():
+	$DamageBox/Hitbox/CollisionShape2D.disabled = true
 	velocity.x = 0
 	$DamageBox/Hurtbox/CollisionShape2D.disabled = true
 	animated_player.play("damaged")
@@ -116,7 +117,7 @@ func damage_state():
 func _on_damage_received(enemy_damage):
 	health -= enemy_damage
 	health_changed.emit()
-	if health == 0:
+	if health <= 0:
 		state = DEATH
 	else:
 		state = DAMAGED
@@ -127,7 +128,6 @@ func death_state():
 	animated_player.play("death")
 	await animated_player.animation_finished
 	queue_free()
-	
 
 
 func _on_hitbox_area_entered(area):

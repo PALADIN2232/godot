@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://covm2vct5fk3i"]
+
+[ext_resource type="PackedScene" uid="uid://ciqr1minhd6em" path="res://parallax_background.tscn" id="2_fpnsu"]
+[ext_resource type="AudioStream" uid="uid://db43ub8ijjd0c" path="res://assets/SFX-20250114T093509Z-001/1-sky-after-rain-101soundboards.mp3" id="2_gctdn"]
+
+[sub_resource type="GDScript" id="GDScript_cdyqc"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://menu.tscn\")
+"
+
+[node name="menu" type="Node2D"]
+script = SubResource("GDScript_cdyqc")
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 401.0
+offset_top = 332.0
+offset_right = 769.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 35
+text = "CONTINUE
+"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_fpnsu")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 208.0
+offset_right = 760.0
+offset_bottom = 319.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "THANKS FOR PLAYING
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gctdn")
+autoplay = true
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
