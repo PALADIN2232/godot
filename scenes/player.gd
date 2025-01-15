@@ -127,7 +127,10 @@ func death_state():
 	velocity.x = 0
 	animated_player.play("death")
 	await animated_player.animation_finished
-	queue_free()
+	if get_tree() != null:
+		get_tree().change_scene_to_file("res://menu.tscn")
+	else:
+		print("Warning: Attempted to change scene, but get_tree() returned null.")
 
 
 func _on_hitbox_area_entered(area):

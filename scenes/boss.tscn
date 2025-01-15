@@ -51,7 +51,6 @@ var direction
 var health = 600
 var damage = 20
 var speed = 60
-var chase = false
 var first_enter = true
 var is_summoning = true
 var player_dmg
@@ -81,8 +80,7 @@ func idle_state():
 	animated_player.play(\"idle\")
 	await get_tree().create_timer(2).timeout
 	$AttackDirection/AttackRange/CollisionShape2D.disabled = false
-	if chase == true:
-		state = CHASE
+	state = CHASE
  
 func attack_state():
 	velocity.x = 0
@@ -140,18 +138,15 @@ func death_state():
 
 
 func _on_detector_body_entered(body: Node2D) -> void:
-	if chase == false:
-		if first_enter == true:
-			state = SUMMONED
-			first_enter = false
-		else:
-			state = CHASE
-	chase = true
+	if first_enter == true:
+		state = SUMMONED
+		$\"../../boss theme\".play()
+		$\"../../AudioStreamPlayer\".stop()
+		first_enter = false
+	else:
+		state = CHASE
 
 
-func _on_detector_body_exited(body: Node2D) -> void:
-	chase = false
-	state = IDLE
 
 func summoned_state():
 	velocity.x = 0
@@ -930,7 +925,7 @@ radius = 30.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wl37"]
 radius = 33.3333
-height = 500.0
+height = 193.333
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_usy1t"]
 streams_count = 3
@@ -958,7 +953,7 @@ script = SubResource("GDScript_3r7i2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-26.6667, 0)
 sprite_frames = SubResource("SpriteFrames_qxpdw")
-animation = &"attack1"
+animation = &"summoned"
 script = SubResource("GDScript_wijm2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1004,13 +999,12 @@ position = Vector2(20, -3.33333)
 shape = SubResource("CircleShape2D_g6suf")
 
 [node name="Detector" type="Area2D" parent="."]
-visible = false
 position = Vector2(-26.6667, 0)
 collision_layer = 16
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
-position = Vector2(-63.3333, -3.33333)
+position = Vector2(10, -6.66667)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3wl37")
 

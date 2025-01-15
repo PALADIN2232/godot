@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cut6s26pqn3tf"]
+
+[ext_resource type="Texture2D" uid="uid://bxn8ig4fmynkq" path="res://assets/healthbar/Sprite-0003 (1).png" id="1_qyrnx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycfkm"]
+size = Vector2(33.4576, 4.52336)
+
+[node name="Area2D" type="AnimatableBody2D"]
+collision_layer = 255
+collision_mask = 255
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(72, 23)
+scale = Vector2(4.21429, 4.86364)
+texture = ExtResource("1_qyrnx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(72.5, 23)
+scale = Vector2(4.21429, 4.86364)
+shape = SubResource("RectangleShape2D_ycfkm")
+one_way_collision = true
